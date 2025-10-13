@@ -1,163 +1,100 @@
 package matrices_kotlin
 
-class Matriz(private val index: Int) {
-    private val filas: Int
-    private val columnas: Int
-    private val datos: Array<Array<Int>>
+class Matriz private constructor(
+    private val _filas: Int,
+    private val _columnas: Int,
+    private val _datos: Array<IntArray>,
+    private val _index: Int = 0
+) {
 
-    init {
-        var temp_fil: Int
-        var temp_col: Int
-        do {
-            print("\nIngrese el número de filas de la matriz $index: ")
-            temp_fil = getEntero()
-            print("Ingrese el número de columnas de la matriz $index: ")
-            temp_col = getEntero()
-            if (temp_fil <= 0 || temp_col <= 0) {
-                println("El número de filas y columnas debe ser positivo, intente de nuevo.")
+    companion object {
+        fun crear(index: Int): Matriz {
+            var temp_fil: Int
+            var temp_col: Int
+            do {
+                print("Ingrese el número de filas de la matriz $index: ")
+                temp_fil = getEntero()
+                print("Ingrese el número de columnas de la matriz $index: ")
+                temp_col = getEntero()
+                if (temp_fil <= 0 || temp_col <= 0) {
+                    println("El número de filas y columnas debe ser positivo, intente de nuevo.")
+                }
+            } while (temp_fil <= 0 || temp_col <= 0)
+
+            val datos = Array(temp_fil) { IntArray(temp_col) { 0 } }
+            for (i in 0 until temp_fil) {
+                for (j in 0 until temp_col) {
+                    print("Ingrese el elemento [$i][$j]: ")
+                    datos[i][j] = getEntero()
+                }
             }
-        } while (temp_fil <= 0 || temp_col <= 0)
+            return Matriz(temp_fil, temp_col, datos, index)
+        }
+    }
 
-        filas = temp_fil
-        columnas = temp_col
+    operator fun plus(otra: Matriz): Matriz {
+        require(_filas == otra._filas && _columnas == otra._columnas) {
+            "Las matrices deben tener las mismas dimensiones para sumar"
+        }
+        val res = Array(_filas) { IntArray(_columnas) }
+        for (i in 0 until _filas)
+            for (j in 0 until _columnas)
+                res[i][j] = _datos[i][j] + otra._datos[i][j]
+        return Matriz(_filas, _columnas, res)
+    }
 
-        datos = Array(filas) { Array(columnas) { 0 } }
-        for (i in 0 until filas) {
-            for (j in 0 until columnas) {
-                print("Ingrese el elemento [$i][$j]: ")
-                val entrada = getEntero()
-                datos[i][j] = entrada
+    operator fun minus(otra: Matriz): Matriz {
+        require(_filas == otra._filas && _columnas == otra._columnas) {
+            "Las matrices deben tener las mismas dimensiones para restar"
+        }
+        val res = Array(_filas) { IntArray(_columnas) }
+        for (i in 0 until _filas)
+            for (j in 0 until _columnas)
+                res[i][j] = _datos[i][j] - otra._datos[i][j]
+        return Matriz(_filas, _columnas, res)
+    }
+
+    operator fun times(otra: Matriz): Matriz {
+        require(_columnas == otra._filas) {
+            "Las matrices deben tener dimensiones compatibles para multiplicar"
+        }
+        val colsRes = otra._columnas
+        val res = Array(_filas) { IntArray(colsRes) }
+        for (i in 0 until _filas) { //i representa las filas de la primera
+            for (j in 0 until colsRes) { //j representa las columnas de la segunda
+                var suma = 0
+                for (k in 0 until _columnas) { //k representa las columnas de la primera y las filas de la segunda
+                    suma += _datos[i][k] * otra._datos[k][j]
+                }
+                res[i][j] = suma
             }
         }
+        return Matriz(_filas, colsRes, res)
     }
 
     fun getFilas(): Int {
-        return filas
+        return _filas
     }
 
     fun getColumnas(): Int {
-        return columnas
+        return _columnas
     }
 
-fun sumar(otra: Matriz) {
-    if (filas != otra.getFilas() || columnas != otra.getColumnas()) {
-        println("Las matrices deben tener las mismas dimensiones para sumar")
-        return
-    }
-    val resultado = Array(filas) { Array(columnas) { 0 } }
-    for (i in 0 until filas) {
-        for (j in 0 until columnas) {
-            resultado[i][j] = datos[i][j] + otra.datos[i][j]
+    fun mostrar(default: String = "\b") {
+        if (_index != 0) {
+            println("\nMatriz $_index:")
         }
-    }
+        else {
+            println("\nMatriz $default:")
+        }
 
-    println("\nResultado de la suma:")
-    for (i in 0 until filas) {
+    for (i in 0 until _filas) {
         print("[")
-        for (j in 0 until columnas) {
-            print("${resultado[i][j]} ")
+        for (j in 0 until _columnas) {
+            print("${_datos[i][j]} ")
         }
         println("\b]")
     }
-}
-
-fun restar(otra: Matriz) {
-    if (filas != otra.getFilas() || columnas != otra.getColumnas()) {
-        println("Las matrices deben tener las mismas dimensiones para restar")
-        return
+    println()
     }
-    val resultado = Array(filas) { Array(columnas) { 0 } }
-    for (i in 0 until filas) {
-        for (j in 0 until columnas) {
-            resultado[i][j] = datos[i][j] - otra.datos[i][j]
-        }
-    }
-
-    println("\nResultado de la resta:")
-    for (i in 0 until filas) {
-        print("[")
-        for (j in 0 until columnas) {
-            print("${resultado[i][j]} ")
-        }
-        println("\b]")
-    }
-}
-
-fun multiplicar(otra: Matriz) { //La matriz resultante tiene las filas de la primera y las columnas de la segunda
-    if (columnas != otra.getFilas()) {
-        println("Las matrices deben tener dimensiones compatibles para multiplicar")
-        return
-    }
-    val colsRes = otra.getColumnas()
-    val resultado = Array(filas) { Array(colsRes) { 0 } }
-    for (i in 0 until filas) { //i representa las filas de la primera
-        for (j in 0 until colsRes) { //j representa las columnas de la segunda
-            var suma = 0
-            for (k in 0 until columnas) { //k representa las columnas de la primera y las filas de la segunda
-                suma += datos[i][k] * otra.datos[k][j]
-            }
-            resultado[i][j] = suma
-        }
-    }
-
-    println("\nResultado de la multiplicación:")
-    for (i in 0 until filas) {
-        print("[")
-        for (j in 0 until colsRes) {
-            print("${resultado[i][j]} ")
-        }
-        println("\b]")
-    }
-}
-
-fun mostrar() {
-    println("\nMatriz $index:")
-    for (i in 0 until filas) {
-        print("[")
-        for (j in 0 until columnas) {
-            print("${datos[i][j]} ")  
-        }
-        println("\b]")
-    }
-}
-
-fun opsDisponibles(otra: Matriz) {
-    val caso: Int
-    println("\nOperaciones disponibles: ")
-    if (filas == otra.getFilas() && columnas == otra.getColumnas()) {
-        println("1. Sumar")
-        println("2. Restar")
-        println("3. Multiplicar\n")
-        caso = 1
-    } else if (columnas == otra.getFilas()) {
-        println("3. Multiplicar\n")
-        caso = 2
-    } else {
-        println("No hay operaciones disponibles entre las matrices.")
-        return
-    }
-
-    print("Seleccione una operación: ")
-    var opcion: Int
-    if (caso == 1){
-        do {
-            opcion = getEntero()
-            when (opcion) {
-                1 -> sumar(otra)
-                2 -> restar(otra)
-                3 -> multiplicar(otra)
-                else -> print("Opción inválida, intente de nuevo: ")
-            }
-        } while (opcion !in 1..3)
-    } else if (caso == 2) {
-        do {
-            opcion = getEntero()
-            when (opcion) {
-                3 -> multiplicar(otra)
-                else -> print("Opción inválida, intente de nuevo: ")
-            }
-        } while (opcion != 3)
-    }
-    
-}
 }
