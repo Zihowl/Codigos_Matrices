@@ -1,27 +1,29 @@
 #ifndef MATRIZ_H
 #define MATRIZ_H
 
-// #include <vector>
+#include <vector>
+#include <string>
 
 using namespace std;
 
 class Matriz {
     private:
-    int index;
+
+    string index;
     unsigned int filas;
     unsigned int columnas;
-    int datos[10][10];
-    // vector<vector<int>> datos;
+    vector<vector<int>> datos;
+    void crearMatriz();
 
     public:
-    Matriz(unsigned int _index);
+    Matriz(string _index);
+    Matriz(unsigned int filas, unsigned int columnas, string _index = "Resultante");
     unsigned int getFilas() const;
     unsigned int getColumnas() const;
-    void suma(const Matriz& otra);
-    void resta(const Matriz& otra);
-    void multiplicacion(const Matriz& otra);
+    Matriz operator+ (const Matriz& otra) const;
+    Matriz operator- (const Matriz& otra) const;
+    Matriz operator* (const Matriz& otra) const;
     void mostrar();
-    void opDisponibles();
 };
 
 #endif // MATRIZ_H
