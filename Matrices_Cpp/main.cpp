@@ -6,8 +6,8 @@ using namespace std;
 int getEntero() {
     int numero;
     while (!(cin >> numero)) {
-        cin.clear();
-        cin.ignore(10000, '\n');
+        cin.clear(); // Para limpiar el estado de error
+        cin.ignore(10000, '\n'); // Descarta la entrada no valida
         cout << "Entrada invalida, intente de nuevo: ";
     }
     return numero;

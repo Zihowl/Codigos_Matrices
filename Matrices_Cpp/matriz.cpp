@@ -73,9 +73,9 @@ Matriz Matriz::operator*(const Matriz& otra) const {
     }
 
     Matriz resultado(filas, otra.columnas, "Resultante");
-    for (unsigned int i = 0; i < filas; i++) {
-        for (unsigned int j = 0; j < otra.columnas; j++) {
-            for (unsigned int k = 0; k < columnas; k++) {
+    for (unsigned int i = 0; i < filas; i++) { // i representa las filas de la primera matriz
+        for (unsigned int j = 0; j < otra.columnas; j++) { // j representa las columnas de la segunda matriz
+            for (unsigned int k = 0; k < columnas; k++) { // k representa las columnas de la primera matriz y las filas de la segunda
                 resultado.datos[i][j] += datos[i][k] * otra.datos[k][j];
             }
         }
