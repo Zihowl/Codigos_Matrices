@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "+jbY/xzY+YU=",
+  "success": true,
+  "projectFilePath": "/home/zihowl/Documentos/7mo/PAyPM/Codigos_Matrices/Matrices_Cs/Matrices_Cs.csproj",
+  "expectedPackageFiles": [
+    "/home/zihowl/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.9/microsoft.aspnetcore.app.ref.9.0.9.nupkg.sha512"
+  ],
+  "logs": []
+}
