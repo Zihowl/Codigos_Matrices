@@ -1,6 +1,0 @@
-/home/zihowl/Documentos/7mo/PAyPM/Codigos_Matrices/Matrices_Cs/obj/Debug/net6.0/Matrices_Cs.csproj.AssemblyReference.cache
-/home/zihowl/Documentos/7mo/PAyPM/Codigos_Matrices/Matrices_Cs/obj/Debug/net6.0/Matrices_Cs.GeneratedMSBuildEditorConfig.editorconfig
-/home/zihowl/Documentos/7mo/PAyPM/Codigos_Matrices/Matrices_Cs/obj/Debug/net6.0/Matrices_Cs.AssemblyInfoInputs.cache
-/home/zihowl/Documentos/7mo/PAyPM/Codigos_Matrices/Matrices_Cs/obj/Debug/net6.0/Matrices_Cs.AssemblyInfo.cs
-/home/zihowl/Documentos/7mo/PAyPM/Codigos_Matrices/Matrices_Cs/obj/Debug/net6.0/Matrices_Cs.csproj.CoreCompileInputs.cache
-/home/zihowl/Documentos/7mo/PAyPM/Codigos_Matrices/Matrices_Cs/obj/Debug/net6.0/Matrices_Cs.sourcelink.json
