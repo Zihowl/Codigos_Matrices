@@ -1,10 +1,10 @@
 {
+  "code-runner.executorMap": {
+    "csharp": "dotnet run --project Matrices_Cs/Matrices_Cs.csproj --"
+  },
   "code-runner.runInTerminal": true,
   "code-runner.fileDirectoryAsCwd": false,
   "code-runner.saveAllFilesBeforeRun": true,
-  "code-runner.executorMap": {
-    "csharp": "dotnet run --project ${workspaceFolder}/Matrices_Cs/Matrices_Cs.csproj"
-  },
 
   "files.associations": {
     "iostream": "cpp"
