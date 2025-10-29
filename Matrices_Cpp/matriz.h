@@ -14,12 +14,14 @@ class Matriz {
     unsigned int columnas;
     vector<vector<int>> datos;
     void crearMatriz();
+    bool dimensionesIguales(const Matriz& otra) const;
 
     public:
     Matriz(string _index);
     Matriz(unsigned int filas, unsigned int columnas, string _index = "Resultante");
     unsigned int getFilas() const;
     unsigned int getColumnas() const;
+    
     Matriz operator+ (const Matriz& otra) const;
     Matriz operator- (const Matriz& otra) const;
     Matriz operator* (const Matriz& otra) const;

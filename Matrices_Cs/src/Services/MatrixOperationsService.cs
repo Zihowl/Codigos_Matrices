@@ -8,7 +8,7 @@ namespace Matrices_Cs.Services
     {
         public Matrix Add(Matrix a, Matrix b)
         {
-            if (a.Rows != b.Rows || a.Columns != b.Columns) throw new ArgumentException("Dimensiones incompatibles para sumar.");
+            EnsureSameDimensions(a, b, "sumar");
             var res = new Matrix(a.Rows, a.Columns);
             for (int i = 0; i < a.Rows; i++)
                 for (int j = 0; j < a.Columns; j++)
@@ -18,12 +18,18 @@ namespace Matrices_Cs.Services
 
         public Matrix Subtract(Matrix a, Matrix b)
         {
-            if (a.Rows != b.Rows || a.Columns != b.Columns) throw new ArgumentException("Dimensiones incompatibles para restar.");
+            EnsureSameDimensions(a, b, "restar");
             var res = new Matrix(a.Rows, a.Columns);
             for (int i = 0; i < a.Rows; i++)
                 for (int j = 0; j < a.Columns; j++)
                     res[i, j] = a[i, j] - b[i, j];
             return res;
+        }
+
+        private static void EnsureSameDimensions(Matrix a, Matrix b, string opName)
+        {
+            if (a.Rows != b.Rows || a.Columns != b.Columns)
+                throw new ArgumentException($"Dimensiones incompatibles para {opName}.");
         }
 
         public Matrix Multiply(Matrix a, Matrix b)

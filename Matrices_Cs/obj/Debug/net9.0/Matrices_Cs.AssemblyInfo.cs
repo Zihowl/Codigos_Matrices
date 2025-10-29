@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Matrices_Cs")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7f9ea5caeff3add4216f2cfa4ed308ba2005568b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2bfba90fce9224ad1e23ae08f824f1ba93826eb3")]
 [assembly: System.Reflection.AssemblyProductAttribute("Matrices_Cs")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Matrices_Cs")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,8 +1,16 @@
 {
-    "files.associations": {
-        "iostream": "cpp"
-    },
-    "java.project.sourcePaths": [
-        "Matrices_Java/src"
-    ]
+  "code-runner.runInTerminal": true,
+  "code-runner.fileDirectoryAsCwd": false,
+  "code-runner.saveAllFilesBeforeRun": true,
+  "code-runner.executorMap": {
+    "csharp": "dotnet run --project ${workspaceFolder}/Matrices_Cs/Matrices_Cs.csproj"
+  },
+
+  "files.associations": {
+    "iostream": "cpp"
+  },
+
+  "java.project.sourcePaths": [
+    "Matrices_Java/src"
+  ]
 }

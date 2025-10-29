@@ -28,6 +28,10 @@ void Matriz::crearMatriz() {
     }
 }
 
+bool Matriz::dimensionesIguales(const Matriz& otra) const {
+    return (filas == otra.filas) && (columnas == otra.columnas);
+}
+
 unsigned int Matriz::getFilas() const {
     return filas;
 }
@@ -37,7 +41,7 @@ unsigned int Matriz::getColumnas() const {
 }
 
 Matriz Matriz::operator+(const Matriz& otra) const {
-    if (filas != otra.filas || columnas != otra.columnas) {
+    if (!dimensionesIguales(otra)) {
         cout << "Error: Las matrices deben tener las mismas dimensiones para sumar." << endl;
         return Matriz(0, 0);
     }
@@ -52,7 +56,7 @@ Matriz Matriz::operator+(const Matriz& otra) const {
 }
 
 Matriz Matriz::operator-(const Matriz& otra) const {
-    if (filas != otra.filas || columnas != otra.columnas) {
+    if (!dimensionesIguales(otra)) {
         cout << "Error: Las matrices deben tener las mismas dimensiones para restar." << endl;
         return Matriz(0, 0);
     }
